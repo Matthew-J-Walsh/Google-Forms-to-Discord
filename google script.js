@@ -32,12 +32,24 @@ function onSubmit(e) {
     }
   }
 
-  var options = {
+  var options1 = {
     "method": "post",
     "payload": JSON.stringify({
       "embeds": [{
         "title": "TOP TEXT CHANGE THIS IN SCRIPT",
-        "fields": items,
+        "fields": items.slice(0, 20),
+        "footer": {
+          "text": "BOTTOM TEXT CHANGE THIS IN SCRIPT"
+        }
+      }]
+    })
+  };
+  var options2 = {
+    "method": "post",
+    "payload": JSON.stringify({
+      "embeds": [{
+        "title": "TOP TEXT CHANGE THIS IN SCRIPT",
+        "fields": items.slice(20),
         "footer": {
           "text": "BOTTOM TEXT CHANGE THIS IN SCRIPT"
         }
@@ -45,5 +57,6 @@ function onSubmit(e) {
     })
   };
 
-  UrlFetchApp.fetch(POST_URL, options);
+  UrlFetchApp.fetch(POST_URL, options1);
+  UrlFetchApp.fetch(POST_URL, options2);
 };
